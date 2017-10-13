@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
         // jajajajajajjaaja
         //Testar lite till va fan!
         //vilket språk du har
+        //lalala
 
 
     }
