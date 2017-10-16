@@ -4,8 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/P3Weather.iml" filepath="$PROJECT_DIR$/P3Weather.iml" />
       <module fileurl="file://$PROJECT_DIR$/P3WeatherApp.iml" filepath="$PROJECT_DIR$/P3WeatherApp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/P3WeatherApp.iml" filepath="$PROJECT_DIR$/P3WeatherApp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
