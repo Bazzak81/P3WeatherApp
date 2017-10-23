@@ -6,6 +6,8 @@ import android.util.Log;
  * Created by OlleOlsson on 2017-10-18.
  */
 
+//TODO Flytta över all text till values/strings
+
 public class Controller {
 
     public Controller(){
@@ -15,13 +17,12 @@ public class Controller {
 
     private class Querry extends Thread{
 
-        private static final String TAG = "Querry" ;
 
         @Override
         public void run() {
             JSONParser question = new JSONParser("Malmo");
-            Log.d(TAG, "onCreate: city "+question.getCity());
-            Log.d(TAG, "onCreate: temp "+question.getTemp());
+            Log.d("Querry", "onCreate: city "+question.getCity());
+            Log.d("Querry", "onCreate: temp "+question.getTemp());
         }
     }
 }
