@@ -39,7 +39,7 @@ public class WeatherFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_weather, container, false);
         weatherModel = new WeatherModel();
         initializeComponents(view);
-        setImageResource();
+        setImageResource(view);
         setTextViews();
         return view;
     }
@@ -60,27 +60,33 @@ public class WeatherFragment extends Fragment {
         tvSetWindspeed.setText(String.valueOf(weatherModel.wind.getWindSpeed()));
     }
 
-    public void setImageResource() {
+    public void setImageResource(View view) {
         weatherCondition = weatherModel.currentConditionModel.getCondition();
 
         switch (weatherCondition) {
             case "cloudy":
                 weatherImage.setImageResource(R.drawable.cloudy);
+                //view.setBackgroundColor();
                 break;
             case "rainy":
                 weatherImage.setImageResource(R.drawable.rainy);
+                //view.setBackgroundColor();
                 break;
             case "snowy":
                 weatherImage.setImageResource(R.drawable.snowy);
+                //view.setBackgroundColor();
                 break;
             case "sunny":
                 weatherImage.setImageResource(R.drawable.sunny);
+                //view.setBackgroundColor();
                 break;
             case "sunnycloudy":
                 weatherImage.setImageResource(R.drawable.sunnycloudy);
+                //view.setBackgroundColor();
                 break;
             case "sunnyrainy":
                 weatherImage.setImageResource(R.drawable.sunnyrainy);
+                //view.setBackgroundColor();
                 break;
             default:
         }
