@@ -16,6 +16,8 @@ public class Connection {
     //API key: 92d45b077fa249614bfc79c61cf8b50f
     private String apiKey = "&APPID=92d45b077fa249614bfc79c61cf8b50f";
     private String httpPath = "http://api.openweathermap.org/data/2.5/weather?q=";
+    private String language = "&lang=-se";
+    private String unit = "&units=metric";
 
 
     public Connection() {
@@ -27,7 +29,7 @@ public class Connection {
         InputStream inputStream;
 
         try {
-            connection = (HttpURLConnection) (new URL(httpPath + city + apiKey)).openConnection();
+            connection = (HttpURLConnection) (new URL(httpPath + city + apiKey+language+unit)).openConnection();
             connection.setRequestMethod("GET");
             connection.setDoInput(true);
             connection.setDoOutput(true);
