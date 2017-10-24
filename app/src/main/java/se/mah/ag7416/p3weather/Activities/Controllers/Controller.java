@@ -13,18 +13,4 @@ public class Controller {
     public Controller() {
         new Querry().start();
     }
-
-
-    private class Querry extends Thread {
-
-
-        @Override
-        public void run() {
-            JSONParser question = new JSONParser("träleborg");
-            Log.d("Querry", "onCreate: city " + question.getCity());
-            Log.d("Querry", "onCreate: temp " + question.getTemp());
-            if (question.getError()!=null)
-                Log.d("Querry", "onCreate: null");
-        }
-    }
 }
