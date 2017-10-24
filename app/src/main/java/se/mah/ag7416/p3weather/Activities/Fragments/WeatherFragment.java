@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import se.mah.ag7416.p3weather.Activities.Controllers.FragmentController;
 import se.mah.ag7416.p3weather.Activities.Models.WeatherModel;
@@ -24,6 +25,9 @@ public class WeatherFragment extends Fragment {
     private String weatherCondition;
 
     private ImageView weatherImage;
+    private ImageView plusFragment;
+    private ImageView minusFragment;
+
     private TextView tvTemperature;
     private TextView tvCity;
     private TextView tvSetTempUnit;
@@ -40,11 +44,15 @@ public class WeatherFragment extends Fragment {
         weatherModel = new WeatherModel();
         initializeComponents(view);
         setImageResource(view);
+        registerListeners();
         setTextViews();
         return view;
     }
 
     public void initializeComponents(View view) {
+
+        plusFragment = (ImageView) view.findViewById(R.id.plusFragment);
+        minusFragment = (ImageView) view.findViewById(R.id.minusFragment);
         weatherImage = (ImageView) view.findViewById(R.id.weatherImage);
         tvTemperature = (TextView) view.findViewById(R.id.tvTemperature);
         tvCity = (TextView) view.findViewById(R.id.tvCity);
@@ -89,6 +97,25 @@ public class WeatherFragment extends Fragment {
                 //view.setBackgroundColor();
                 break;
             default:
+        }
+    }
+
+    public void registerListeners() {
+        plusFragment.setOnClickListener(new addFragmentListener());
+        minusFragment.setOnClickListener(new removeFragmentListener());
+    }
+
+    private class addFragmentListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(getActivity(), "Add-fragment button clicked", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private class removeFragmentListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(getActivity(), "Remove-fragment button clicked", Toast.LENGTH_SHORT).show();
         }
     }
 }
