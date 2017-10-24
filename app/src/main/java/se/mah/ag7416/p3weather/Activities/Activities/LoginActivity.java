@@ -47,7 +47,8 @@ public class LoginActivity extends AppCompatActivity implements
         findViewById(R.id.sign_in_button).setOnClickListener(this);
         findViewById(R.id.sign_out_button).setOnClickListener(this);
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions
+                .DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
 
@@ -100,7 +101,8 @@ public class LoginActivity extends AppCompatActivity implements
 
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            Log.d(TAG, "onActivityResult: " +"CommonStatusCode: "+ result.getStatus().getStatusCode());
+            Log.d(TAG, "onActivityResult: " + "CommonStatusCode: " + result.getStatus()
+                    .getStatusCode());
             handleSignInResult(result);
         }
     }
@@ -121,7 +123,7 @@ public class LoginActivity extends AppCompatActivity implements
     }
 
     private void startFragmentActivity() {
-        Intent intent = new Intent(this,FragmentActivity.class);
+        Intent intent = new Intent(this, FragmentActivity.class);
         startActivity(intent);
     }
 

@@ -54,7 +54,6 @@ public class JSONParser {
         return null;
     }
 
-    //TODO
     public int getIcon() {
         try {
             JSONObject weather = jsonObject.getJSONObject("weather");
@@ -62,30 +61,30 @@ public class JSONParser {
             if (icon == "01d" || icon == "01n") {
                 return R.drawable.sunny;
             }
-            if(icon=="02d"||icon=="02n"){
+            if (icon == "02d" || icon == "02n") {
                 return R.drawable.sunnycloudy;
             }
-            if(icon=="03d"||icon=="03n"||icon=="04d"||icon=="04n"){
+            if (icon == "03d" || icon == "03n" || icon == "04d" || icon == "04n" || icon == "50d"
+                    || icon == "50n") {
                 return R.drawable.cloudy;
             }
-            if(icon=="09d"||icon=="09n"){
+            if (icon == "09d" || icon == "09n" || icon == "11d" || icon == "11n") {
                 return R.drawable.rainy;
             }
-            if(icon=="10d"||icon=="10n"){
+            if (icon == "10d" || icon == "10n") {
                 return R.drawable.sunnyrainy;
             }
-            if(icon==""){
-
+            if (icon == "13d" || icon == "13n") {
+                return R.drawable.snowy;
             }
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
         return 0;
     }
 
-    public String getError(){
+    public String getError() {
         try {
             return jsonObject.getString("error");
         } catch (JSONException e) {
