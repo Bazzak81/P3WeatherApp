@@ -101,10 +101,17 @@ public class LoginActivity extends AppCompatActivity implements
             GoogleSignInAccount acct = result.getSignInAccount();
             mStatusTextView.setText("signed in as " + acct.getDisplayName());
             updateUI(true);
+            startFragmentActivity();
         } else {
             // Signed out, show unauthenticated UI.
             updateUI(false);
+            startFragmentActivity(); // TODO tillfällig förbikoppling av google inloggning
         }
+    }
+
+    private void startFragmentActivity() {
+        Intent intent = new Intent(this,FragmentActivity.class);
+        startActivity(intent);
     }
 
     private void signIn() {
