@@ -5,4 +5,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="signed_in_fmt">signed in</string>
     <string name="sign_out">Sign out</string>
+    <string name="add_new_city">ADD NEW CITY</string>
+    <string name="search_city">search city</string>
+    <string name="cancel">Cancel</string>
+    <string name="search_now">Search now!</string>
 </resources>
