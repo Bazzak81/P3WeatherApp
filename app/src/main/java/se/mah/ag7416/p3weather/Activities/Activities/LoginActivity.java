@@ -1,16 +1,14 @@
 package se.mah.ag7416.p3weather.Activities.Activities;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import se.mah.ag7416.p3weather.Activities.Controllers.Controller;
-import se.mah.ag7416.p3weather.R;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -21,6 +19,9 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+
+import se.mah.ag7416.p3weather.Activities.Controllers.Controller;
+import se.mah.ag7416.p3weather.R;
 
 
 public class LoginActivity extends AppCompatActivity implements
@@ -46,7 +47,8 @@ public class LoginActivity extends AppCompatActivity implements
         findViewById(R.id.sign_in_button).setOnClickListener(this);
         findViewById(R.id.sign_out_button).setOnClickListener(this);
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions
+                .DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
 
@@ -63,7 +65,8 @@ public class LoginActivity extends AppCompatActivity implements
     public void onStart() {
         super.onStart();
 
-        OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(mGoogleApiClient);
+        OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn
+                (mGoogleApiClient);
         if (opr.isDone()) {
             // If the user's cached credentials are valid, the OptionalPendingResult will be "done"
             // and the GoogleSignInResult will be available instantly.
@@ -74,6 +77,7 @@ public class LoginActivity extends AppCompatActivity implements
             // If the user has not previously signed in on this device or the sign-in has expired,
             // this asynchronous branch will attempt to sign in the user silently.  Cross-device
             // single sign-on will occur in this branch.
+            Log.d(TAG, "Dont have cached sign-in");
             showProgressDialog();
             opr.setResultCallback(new ResultCallback<GoogleSignInResult>() {
                 @Override
@@ -97,7 +101,8 @@ public class LoginActivity extends AppCompatActivity implements
 
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            Log.d(TAG, "onActivityResult: "+result.getStatus().getStatusCode());
+            Log.d(TAG, "onActivityResult: " + "CommonStatusCode: " + result.getStatus()
+                    .getStatusCode());
             handleSignInResult(result);
         }
     }
@@ -118,7 +123,7 @@ public class LoginActivity extends AppCompatActivity implements
     }
 
     private void startFragmentActivity() {
-        Intent intent = new Intent(this,FragmentActivity.class);
+        Intent intent = new Intent(this, FragmentActivity.class);
         startActivity(intent);
     }
 
@@ -181,8 +186,8 @@ public class LoginActivity extends AppCompatActivity implements
             findViewById(R.id.sign_in_button).setVisibility(View.GONE);
             findViewById(R.id.sign_out_button).setVisibility(View.VISIBLE);
         } else {
+            Log.d(TAG, "updateUI: Signed in failed");
             mStatusTextView.setText("signed out");
-
             findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
             findViewById(R.id.sign_out_button).setVisibility(View.GONE);
         }
