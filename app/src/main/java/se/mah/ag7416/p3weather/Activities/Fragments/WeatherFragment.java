@@ -32,6 +32,8 @@ public class WeatherFragment extends Fragment {
     private TextView tvCity;
     private TextView tvSetTempUnit;
     private TextView tvSetWindspeed;
+    private int icon;
+    private View view;
 
     public WeatherFragment() {
     }
@@ -40,12 +42,11 @@ public class WeatherFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_weather, container, false);
+        view = inflater.inflate(R.layout.fragment_weather, container, false);
         weatherModel = new WeatherModel();
         initializeComponents(view);
-        setImageResource(view);
-        registerListeners();
-        setTextViews();
+//        setImageResource(view);
+//        setTextViews();
         return view;
     }
 
@@ -59,6 +60,15 @@ public class WeatherFragment extends Fragment {
         tvSetTempUnit = (TextView) view.findViewById(R.id.tvSetTempUnit);
         tvSetWindspeed = (TextView) view.findViewById(R.id.tvSetWindspeed);
 
+    }
+
+    public void setText(String city, String temp, String wind, int icon ){
+        tvCity.setText(city);
+        tvTemperature.setText(temp);
+        tvSetTempUnit.setText(CELCIUS);
+        tvSetWindspeed.setText(wind);
+        this.icon=icon;
+        weatherImage.setImageResource(icon);
     }
 
     public void setTextViews() {
