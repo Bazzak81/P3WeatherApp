@@ -40,8 +40,6 @@ public class LoginActivity extends AppCompatActivity implements
         //TODO Remove below line
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        new Controller();
-
         mStatusTextView = (TextView) findViewById(R.id.status);
         findViewById(R.id.sign_in_button).setOnClickListener(this);
 
@@ -123,7 +121,11 @@ public class LoginActivity extends AppCompatActivity implements
 
     @Override
     public void onClick(View v) {
+<<<<<<< HEAD
         //signOut(); // Signing out automatic sign-in (for display purposes)
+=======
+//        signOut(); // Signing out automatic sign-in (for display purposes)
+>>>>>>> master
         signIn();
     }
 }

@@ -19,7 +19,6 @@ public class Connection {
     private String language = "&lang=se";
     private String unit = "&units=metric";
 
-
     public Connection() {
 
     }
@@ -27,28 +26,35 @@ public class Connection {
     public String getWeather(String city) {
         HttpURLConnection connection;
         InputStream inputStream;
+        if (!city.equals("")) {
+            try {
+                connection = (HttpURLConnection) (new URL(httpPath + city + ",se" + apiKey + language
 
-        try {
-            connection = (HttpURLConnection) (new URL(httpPath + city + apiKey+language+unit)).openConnection();
-            connection.setRequestMethod("GET");
-            connection.setDoInput(true);
-            connection.setDoOutput(true);
-            connection.connect();
+                        + unit)
+                ).openConnection();
+                connection.setRequestMethod("GET");
+                connection.setDoInput(true);
+                connection.setDoOutput(true);
+                connection.connect();
 
-            StringBuilder buffer = new StringBuilder();
-            inputStream = connection.getInputStream();
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                buffer.append(line).append("\r\n");
+                StringBuilder buffer = new StringBuilder();
+                inputStream = connection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                String line;
+                while ((line = bufferedReader.readLine()) != null) {
+                    buffer.append(line).append("\r\n");
+                }
+                inputStream.close();
+                connection.disconnect();
+                return buffer.toString();
+
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            inputStream.close();
-            connection.disconnect();
-            return buffer.toString();
-
-        } catch (IOException e) {
-            e.printStackTrace();
+            return null;
+        }else{
+            return null;
         }
-        return null;
+
     }
 }

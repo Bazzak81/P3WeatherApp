@@ -6,11 +6,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import se.mah.ag7416.p3weather.Activities.Controllers.FragmentController;
 import se.mah.ag7416.p3weather.Activities.Models.WeatherModel;
 import se.mah.ag7416.p3weather.R;
 
@@ -23,8 +23,10 @@ public class WeatherFragment extends Fragment {
     public static final String CELCIUS = "Celcius";
     private String weatherCondition;
     private ImageView weatherImage;
-    private ImageView plusFragment;
-    private ImageView minusFragment;
+
+    private ImageButton plusFragment;
+    private ImageButton minusFragment;
+
     private TextView tvTemperature;
     private TextView tvCity;
     private TextView tvSetTempUnit;
@@ -32,7 +34,9 @@ public class WeatherFragment extends Fragment {
     private TextView tvTempFormat;
     private int icon;
     private View view;
-    private se.mah.ag7416.p3weather.Activities.Fragments.FragmentController fragmentController;
+
+    private FragmentController fragmentController;
+
 
     public WeatherFragment() {
     }
@@ -44,31 +48,39 @@ public class WeatherFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_weather, container, false);
         weatherModel = new WeatherModel();
         initializeComponents(view);
+        registerListeners();
 //        setImageResource(view);
 //        setTextViews();
         registerListeners();
         return view;
     }
 
-    public void setController(se.mah.ag7416.p3weather.Activities.Fragments.FragmentController fragmentController){
-        this.fragmentController=fragmentController;
+
+    public void setController(FragmentController fragmentController) {
+        this.fragmentController = fragmentController;
     }
 
-    public void initializeComponents(View view) {
 
+<<<<<<< HEAD
         plusFragment = (ImageView) view.findViewById(R.id.plusFragment);
         minusFragment = (ImageView) view.findViewById(R.id.minusFragment);
 
+=======
+    public void initializeComponents(View view) {
+        plusFragment = (ImageButton) view.findViewById(R.id.plusFragment);
+        minusFragment = (ImageButton) view.findViewById(R.id.minusFragment);
+>>>>>>> master
         weatherImage = (ImageView) view.findViewById(R.id.weatherImage);
         tvTemperature = (TextView) view.findViewById(R.id.tvTemperature);
         tvCity = (TextView) view.findViewById(R.id.tvCity);
         tvSetTempUnit = (TextView) view.findViewById(R.id.tvSetTempUnit);
         tvSetWindspeed = (TextView) view.findViewById(R.id.tvSetWindspeed);
-        tvTempFormat=(TextView)view.findViewById(R.id.tvTempFormat);
+        tvTempFormat = (TextView) view.findViewById(R.id.tvTempFormat);
+
 
     }
 
-    public void setText(String city, String temp, String wind, int icon ){
+    public void setText(String city, String temp, String wind, int icon) {
         tvCity.setText(city);
         tvTemperature.setText(temp);
         tvSetTempUnit.setText(CELCIUS);
@@ -76,6 +88,7 @@ public class WeatherFragment extends Fragment {
         weatherImage.setImageResource(icon);
     }
 
+<<<<<<< HEAD
 
     public void setImageResource(View view) {
         weatherCondition = weatherModel.currentConditionModel.getCondition();
@@ -115,19 +128,68 @@ public class WeatherFragment extends Fragment {
         minusFragment.setClickable(true);
         minusFragment.setOnClickListener(new removeFragmentListener());
 
+=======
+//    public void setTextViews() {
+//        tvCity.setText(weatherModel.place.getCity());
+//        tvTemperature.setText(String.valueOf(weatherModel.temperature.getTemp()));
+//        tvSetTempUnit.setText(CELCIUS);
+//        tvSetWindspeed.setText(String.valueOf(weatherModel.wind.getWindSpeed()));
+//    }
+//
+//    public void setImageResource(View view) {
+//        weatherCondition = weatherModel.currentConditionModel.getCondition();
+//
+//        switch (weatherCondition) {
+//            case "cloudy":
+//                weatherImage.setImageResource(R.drawable.cloudy);
+//                //view.setBackgroundColor();
+//                break;
+//            case "rainy":
+//                weatherImage.setImageResource(R.drawable.rainy);
+//                //view.setBackgroundColor();
+//                break;
+//            case "snowy":
+//                weatherImage.setImageResource(R.drawable.snowy);
+//                //view.setBackgroundColor();
+//                break;
+//            case "sunny":
+//                weatherImage.setImageResource(R.drawable.sunny);
+//                //view.setBackgroundColor();
+//                break;
+//            case "sunnycloudy":
+//                weatherImage.setImageResource(R.drawable.sunnycloudy);
+//                //view.setBackgroundColor();
+//                break;
+//            case "sunnyrainy":
+//                weatherImage.setImageResource(R.drawable.sunnyrainy);
+//                //view.setBackgroundColor();
+//                break;
+//            default:
+//        }
+//    }
+
+    public void registerListeners() {
+        FragmentListener listener = new FragmentListener();
+        plusFragment.setOnClickListener(listener);
+        minusFragment.setOnClickListener(listener);
+>>>>>>> master
     }
 
-    private class addFragmentListener implements View.OnClickListener {
+    private class FragmentListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            Toast.makeText(getActivity(), "Add-fragment button clicked", Toast.LENGTH_SHORT).show();
+            switch (v.getId()) {
+                case R.id.plusFragment:
+                    Toast.makeText(getActivity(), "Add-fragment button clicked", Toast
+                            .LENGTH_SHORT).show();
+                    fragmentController.newFragmentDialog();
+                    break;
+                case R.id.minusFragment:
+                    fragmentController.getActivity().getController().removeFragment
+                            (fragmentController.getFragment());
+                    break;
+            }
         }
     }
 
-    private class removeFragmentListener implements View.OnClickListener {
-        @Override
-        public void onClick(View v) {
-            Toast.makeText(getActivity(), "Remove-fragment button clicked", Toast.LENGTH_SHORT).show();
-        }
-    }
 }
