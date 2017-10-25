@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import se.mah.ag7416.p3weather.Activities.Controllers.Controller;
 import se.mah.ag7416.p3weather.Activities.Fragments.FragmentController;
 import se.mah.ag7416.p3weather.Activities.Fragments.WeatherFragment;
 import se.mah.ag7416.p3weather.R;
@@ -26,6 +27,7 @@ import se.mah.ag7416.p3weather.R;
 public class FragmentActivity extends AppCompatActivity implements LocationListener {
 
     private WeatherFragment weatherFragment;
+    private Controller controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +35,15 @@ public class FragmentActivity extends AppCompatActivity implements LocationListe
         setContentView(R.layout.activity_fragment);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        new FragmentController("Lund",this);
-//        weatherFragment = new WeatherFragment();
-//        addFragment(weatherFragment);
+
+//        new FragmentController("Lund", this);
+        controller = new Controller(this);
+        controller.createNewFragment("Lomma");
+    }
+
+    public Controller getController() {
+        return controller;
+
     }
 
     @Override
@@ -43,14 +51,22 @@ public class FragmentActivity extends AppCompatActivity implements LocationListe
         return true;
     }
 
-    public void addFragment(Fragment fragment) {
+    public void addFragment(Fragment fragment, String tag) {
         FragmentTransaction swap = getSupportFragmentManager().beginTransaction();
-        swap.replace(R.id.fragment_container, fragment);
+        swap.replace(R.id.fragment_container, fragment, tag);
         swap.commit();
+    }
+
+    public void removeFragment(Fragment fragment){
+        FragmentTransaction remove = getSupportFragmentManager().beginTransaction();
+        remove.remove(fragment);
+        remove.commit();
     }
 
     @Override
     public void onLocationChanged(Location location) {
+        //TODO Fixa
+     
         double latitude = location.getLatitude();
         double longitude = location.getLongitude();
         Geocoder gc = new Geocoder(this, Locale.getDefault());
@@ -63,8 +79,10 @@ public class FragmentActivity extends AppCompatActivity implements LocationListe
 
         StringBuilder sb = new StringBuilder();
         if (addresses != null) {
-            for (int i = 0; i <= addresses.size(); i++){
-                Log.d("FragmentActivity", "onLocationChanged: "+addresses.get(i));
+
+            for (int i = 0; i <= addresses.size(); i++) {
+                Log.d("FragmentActivity", "onLocationChanged: " + addresses.get(i));
+
             }
         }
 
