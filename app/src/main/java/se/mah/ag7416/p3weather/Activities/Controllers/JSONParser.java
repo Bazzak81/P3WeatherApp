@@ -65,6 +65,7 @@ public class JSONParser {
     }
 
     public int getIcon() {
+
         if (jsonObject != null) {
             try {
                 JSONArray weather = jsonObject.getJSONArray("weather");
@@ -76,6 +77,7 @@ public class JSONParser {
                     return R.drawable.sunnycloudy;
                 } else if (icon.equals("03d") || icon.equals("03n") || icon.equals("04d") || icon
                         .equals
+
 
                         ("04n") || icon.equals("50d")
                         || icon.equals("50n")) {

@@ -31,6 +31,7 @@ public class Querry extends Thread {
 //            e.printStackTrace();
 //        }
 
+
 //        JSONParser test = new JSONParser("träleborg");
 //        Log.d("Querry", "onCreate: city " + test.getCity());
 //        Log.d("Querry", "onCreate: temp " + test.getTemp());

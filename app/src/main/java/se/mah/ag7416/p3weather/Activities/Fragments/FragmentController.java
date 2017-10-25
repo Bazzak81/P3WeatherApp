@@ -22,6 +22,7 @@ public class FragmentController {
     private FragmentActivity fragmentActivity;
 
     public FragmentController(String cityQuerry, FragmentActivity fragmentActivity) {
+
         this.fragmentActivity = fragmentActivity;
         this.city = cityQuerry;
         fragment = new WeatherFragment();
@@ -44,6 +45,7 @@ public class FragmentController {
     }
 
     public void runQuerry() {
+
         querry = new Querry();
         querry.setCity(city, this);
         querry.start();
@@ -51,17 +53,20 @@ public class FragmentController {
 
     public void updateParser(JSONParser parser) {
         this.parser = parser;
+
         fragmentActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 setValues();
             }
         });
+
     }
 
     private void setValues() {
         fragment.setText(parser.getCity(), parser.getTemp(), parser.getWindspeed(), parser
                 .getIcon());
         Log.d("FragmentController ", "setValues: " + parser.getIcon());
+
     }
 }

@@ -35,6 +35,7 @@ public class FragmentActivity extends AppCompatActivity implements LocationListe
         setContentView(R.layout.activity_fragment);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+
 //        new FragmentController("Lund", this);
         controller = new Controller(this);
         controller.createNewFragment("Lomma");
@@ -42,6 +43,7 @@ public class FragmentActivity extends AppCompatActivity implements LocationListe
 
     public Controller getController() {
         return controller;
+
     }
 
     @Override
@@ -64,6 +66,7 @@ public class FragmentActivity extends AppCompatActivity implements LocationListe
     @Override
     public void onLocationChanged(Location location) {
         //TODO Fixa
+     
         double latitude = location.getLatitude();
         double longitude = location.getLongitude();
         Geocoder gc = new Geocoder(this, Locale.getDefault());
@@ -76,8 +79,10 @@ public class FragmentActivity extends AppCompatActivity implements LocationListe
 
         StringBuilder sb = new StringBuilder();
         if (addresses != null) {
+
             for (int i = 0; i <= addresses.size(); i++) {
                 Log.d("FragmentActivity", "onLocationChanged: " + addresses.get(i));
+
             }
         }
 

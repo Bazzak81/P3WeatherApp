@@ -16,6 +16,7 @@ import se.mah.ag7416.p3weather.Activities.Fragments.WeatherFragment;
 
 public class Controller {
 
+
     private FragmentActivity activity;
     private ArrayList<FragmentController> fragmentControllerArrayList= new ArrayList<>();
 
@@ -36,5 +37,6 @@ public class Controller {
 
     public void removeFragment(WeatherFragment fragment){
         activity.removeFragment(fragment);
+
     }
 }

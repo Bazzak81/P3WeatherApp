@@ -23,8 +23,10 @@ public class WeatherFragment extends Fragment {
     public static final String CELCIUS = "Celcius";
     private String weatherCondition;
     private ImageView weatherImage;
+
     private ImageButton plusFragment;
     private ImageButton minusFragment;
+
     private TextView tvTemperature;
     private TextView tvCity;
     private TextView tvSetTempUnit;
@@ -32,7 +34,9 @@ public class WeatherFragment extends Fragment {
     private TextView tvTempFormat;
     private int icon;
     private View view;
+
     private FragmentController fragmentController;
+
 
     public WeatherFragment() {
     }
@@ -50,9 +54,11 @@ public class WeatherFragment extends Fragment {
         return view;
     }
 
+
     public void setController(FragmentController fragmentController) {
         this.fragmentController = fragmentController;
     }
+
 
     public void initializeComponents(View view) {
         plusFragment = (ImageButton) view.findViewById(R.id.plusFragment);
@@ -63,6 +69,7 @@ public class WeatherFragment extends Fragment {
         tvSetTempUnit = (TextView) view.findViewById(R.id.tvSetTempUnit);
         tvSetWindspeed = (TextView) view.findViewById(R.id.tvSetWindspeed);
         tvTempFormat = (TextView) view.findViewById(R.id.tvTempFormat);
+
 
     }
 
