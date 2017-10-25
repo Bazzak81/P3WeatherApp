@@ -16,7 +16,7 @@ public class Connection {
     //API key: 92d45b077fa249614bfc79c61cf8b50f
     private String apiKey = "&APPID=92d45b077fa249614bfc79c61cf8b50f";
     private String httpPath = "http://api.openweathermap.org/data/2.5/weather?q=";
-    private String language = "&lang=-se";
+    private String language = "&lang=se";
     private String unit = "&units=metric";
 
 

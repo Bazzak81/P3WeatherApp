@@ -11,6 +11,6 @@ import android.util.Log;
 public class Controller {
 
     public Controller() {
-        new Querry().start();
+
     }
 }
