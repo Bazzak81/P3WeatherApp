@@ -1,18 +1,17 @@
 package se.mah.ag7416.p3weather.Activities.Fragments;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import se.mah.ag7416.p3weather.Activities.Controllers.Controller;
 import se.mah.ag7416.p3weather.R;
 
 /**
@@ -24,14 +23,17 @@ public class CreateNewFragmentDialog extends DialogFragment {
     private EditText editCity;
     private Button search;
     private Button cancel;
+    private Controller controller;
 
     public CreateNewFragmentDialog() {
 
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.newdialogfragment, container, false);
+    public View onCreateView(Bundle savedInstanceState) {
+       LayoutInflater inflater = getActivity().getLayoutInflater();
+        View view = inflater.inflate(R.layout.newdialogfragment, null);
+//        View view = inflater.inflate(R.layout.newdialogfragment, container, false);
         initializeComponents(view);
         registerListeners();
         return view;
@@ -45,22 +47,26 @@ public class CreateNewFragmentDialog extends DialogFragment {
     }
 
     public void registerListeners() {
-        search.setOnClickListener(new searchListener());
-        cancel.setOnClickListener(new cancelListener());
+      Listener listener = new Listener();
+        search.setOnClickListener(listener);
+        cancel.setOnClickListener(listener);
     }
 
-    private class searchListener implements View.OnClickListener {
+    private class Listener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            Toast.makeText(getActivity(), "SEARCH CLICKED", Toast.LENGTH_SHORT).show();
+          switch(v.getId()) {
+            case R.id.search:
+                controller.createNewFragment(editCity.getText().toString());
+                 Log.d("CreateNewFragmentDialog", "onClick: "+editCity.getText().toString());
+                 dismiss();
+            break;
+            case R.id.cancel:
+              dismiss();
         }
     }
 
-    private class cancelListener implements View.OnClickListener {
-        @Override
-        public void onClick(View v) {
-            Toast.makeText(getActivity(), "CANCEL CLICKED", Toast.LENGTH_SHORT).show();
-            getDialog().cancel();
-        }
+    public void setController(Controller controller){
+        this.controller=controller;
     }
 }
