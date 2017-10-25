@@ -66,6 +66,7 @@ public class CreateNewFragmentDialog extends DialogFragment {
                     break;
                 case R.id.cancel:
                     dismiss();
+
             }
         }
     }
