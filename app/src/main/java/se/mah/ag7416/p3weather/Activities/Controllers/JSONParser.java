@@ -16,8 +16,8 @@ public class JSONParser {
 
     private JSONObject jsonObject;
 
-    public JSONParser(String city) {
-        String data = new Connection().getWeather(city);
+    public JSONParser(String city,double longitude,double latitude) {
+        String data = new Connection().getWeather(city,longitude,latitude);
         Log.d("JSONParser", "JSONParser: " + data);
         if (data != null) {
             try {
@@ -65,7 +65,6 @@ public class JSONParser {
     }
 
     public int getIcon() {
-
         if (jsonObject != null) {
             try {
                 JSONArray weather = jsonObject.getJSONArray("weather");
@@ -76,15 +75,10 @@ public class JSONParser {
                 } else if (icon.equals("02d") || icon.equals("02n")) {
                     return R.drawable.sunnycloudy;
                 } else if (icon.equals("03d") || icon.equals("03n") || icon.equals("04d") || icon
-                        .equals
-
-
-                        ("04n") || icon.equals("50d")
-                        || icon.equals("50n")) {
+                        .equals("04n") || icon.equals("50d")|| icon.equals("50n")) {
                     return R.drawable.cloudy;
                 } else if (icon.equals("09d") || icon.equals("09n") || icon.equals("11d") || icon
-                        .equals
-                                ("11n")) {
+                        .equals("11n")) {
                     return R.drawable.rainy;
                 } else if (icon.equals("10d") || icon.equals("10n")) {
                     return R.drawable.sunnyrainy;

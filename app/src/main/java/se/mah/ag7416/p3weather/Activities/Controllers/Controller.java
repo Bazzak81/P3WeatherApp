@@ -30,9 +30,10 @@ public class Controller {
         dialog.setController(this);
     }
 
-    public void createNewFragment(String city){
-        FragmentController fragmentController = new FragmentController(city,activity);
+    public void createNewFragment(String city, double Long, double Lat){
+        FragmentController fragmentController = new FragmentController(city,activity,Long,Lat);
         fragmentControllerArrayList.add(fragmentController);
+
     }
 
     public void removeFragment(WeatherFragment fragment){

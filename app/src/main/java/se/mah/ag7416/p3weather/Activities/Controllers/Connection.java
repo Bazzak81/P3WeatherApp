@@ -16,6 +16,7 @@ public class Connection {
     //API key: 92d45b077fa249614bfc79c61cf8b50f
     private String apiKey = "&APPID=92d45b077fa249614bfc79c61cf8b50f";
     private String httpPath = "http://api.openweathermap.org/data/2.5/weather?q=";
+    private String cordHttpPath = "http://api.openweathermap.org/data/2.5/weather?";
     private String language = "&lang=se";
     private String unit = "&units=metric";
 
@@ -23,15 +24,19 @@ public class Connection {
 
     }
 
-    public String getWeather(String city) {
+    public String getWeather(String city, double longitude, double latitude) {
         HttpURLConnection connection;
         InputStream inputStream;
         if (!city.equals("")) {
-            try {
-                connection = (HttpURLConnection) (new URL(httpPath + city + ",se" + apiKey + language
 
-                        + unit)
-                ).openConnection();
+            try {
+                if (!city.equals("Home")) {
+                    connection = (HttpURLConnection) (new URL(httpPath + city + ",se" + apiKey +
+                            language + unit)).openConnection();
+                } else {
+                    connection = (HttpURLConnection) (new URL(cordHttpPath + "lat=" + latitude +
+                            "&lon=" + longitude + apiKey + language + unit)).openConnection();
+                }
                 connection.setRequestMethod("GET");
                 connection.setDoInput(true);
                 connection.setDoOutput(true);
@@ -39,7 +44,8 @@ public class Connection {
 
                 StringBuilder buffer = new StringBuilder();
                 inputStream = connection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader
+                        (inputStream));
                 String line;
                 while ((line = bufferedReader.readLine()) != null) {
                     buffer.append(line).append("\r\n");
@@ -52,7 +58,7 @@ public class Connection {
                 e.printStackTrace();
             }
             return null;
-        }else{
+        } else {
             return null;
         }
 
