@@ -2,6 +2,7 @@ package se.mah.ag7416.p3weather.Activities.Controllers;
 
 import android.util.Log;
 
+import java.text.DecimalFormat;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,7 +33,10 @@ public class JSONParser {
         if (jsonObject != null) {
             try {
                 JSONObject main = jsonObject.getJSONObject("main");
-                return main.getString("temp");
+                String stringTemp = main.getString("temp");
+                DecimalFormat df = new DecimalFormat("##.#");
+                double roundedTemp = Double.parseDouble(stringTemp);
+                return String.valueOf(df.format(roundedTemp));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -56,6 +60,20 @@ public class JSONParser {
         if (jsonObject != null) {
             try {
                 return jsonObject.getString("name");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+
+    }
+
+    public String getDescription() {
+        if (jsonObject != null) {
+            try {
+                JSONArray array = jsonObject.getJSONArray("weather");
+                JSONObject description = array.getJSONObject(0);
+                return description.getString("main");
             } catch (JSONException e) {
                 e.printStackTrace();
             }

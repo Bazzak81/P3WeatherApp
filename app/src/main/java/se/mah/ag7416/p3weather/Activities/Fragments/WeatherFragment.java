@@ -20,7 +20,6 @@ import se.mah.ag7416.p3weather.R;
 public class WeatherFragment extends Fragment {
 
     private WeatherModel weatherModel;
-    public static final String CELCIUS = "Celcius";
     private String weatherCondition;
     private ImageView weatherImage;
 
@@ -73,12 +72,12 @@ public class WeatherFragment extends Fragment {
 
     }
 
-    public void setText(String city, String temp, String wind, int icon) {
+    public void setText(String city, String temp, String wind, int icon, String description) {
         tvCity.setText(city);
         tvTemperature.setText(temp);
-        tvSetTempUnit.setText(CELCIUS);
-        tvSetWindspeed.setText(wind);
+        tvSetWindspeed.setText(wind + " m/s");
         weatherImage.setImageResource(icon);
+        tvSetTempUnit.setText(description);
 
     }
 
