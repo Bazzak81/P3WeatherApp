@@ -20,20 +20,19 @@ import se.mah.ag7416.p3weather.R;
 public class WeatherFragment extends Fragment {
 
     private WeatherModel weatherModel;
-
     public static final String CELCIUS = "Celcius";
     private String weatherCondition;
-
     private ImageView weatherImage;
     private ImageView plusFragment;
     private ImageView minusFragment;
-
     private TextView tvTemperature;
     private TextView tvCity;
     private TextView tvSetTempUnit;
     private TextView tvSetWindspeed;
+    private TextView tvTempFormat;
     private int icon;
     private View view;
+    private se.mah.ag7416.p3weather.Activities.Fragments.FragmentController fragmentController;
 
     public WeatherFragment() {
     }
@@ -50,6 +49,10 @@ public class WeatherFragment extends Fragment {
         return view;
     }
 
+    public void setController(se.mah.ag7416.p3weather.Activities.Fragments.FragmentController fragmentController){
+        this.fragmentController=fragmentController;
+    }
+
     public void initializeComponents(View view) {
 
         plusFragment = (ImageView) view.findViewById(R.id.plusFragment);
@@ -59,6 +62,7 @@ public class WeatherFragment extends Fragment {
         tvCity = (TextView) view.findViewById(R.id.tvCity);
         tvSetTempUnit = (TextView) view.findViewById(R.id.tvSetTempUnit);
         tvSetWindspeed = (TextView) view.findViewById(R.id.tvSetWindspeed);
+        tvTempFormat=(TextView)view.findViewById(R.id.tvTempFormat);
 
     }
 
@@ -67,7 +71,6 @@ public class WeatherFragment extends Fragment {
         tvTemperature.setText(temp);
         tvSetTempUnit.setText(CELCIUS);
         tvSetWindspeed.setText(wind);
-        this.icon=icon;
         weatherImage.setImageResource(icon);
     }
 

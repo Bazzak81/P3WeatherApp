@@ -2,6 +2,7 @@ package se.mah.ag7416.p3weather.Activities.Controllers;
 
 import android.util.Log;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -56,25 +57,28 @@ public class JSONParser {
 
     public int getIcon() {
         try {
-            JSONObject weather = jsonObject.getJSONObject("weather");
-            String icon = weather.getString("icon");
-            if (icon == "01d" || icon == "01n") {
+            JSONArray weather = jsonObject.getJSONArray("weather");
+            JSONObject w = weather.getJSONObject(0);
+            String icon = w.getString("icon");
+            if (icon.equals("01d") || icon.equals("01n")) {
                 return R.drawable.sunny;
-            }
-            if (icon == "02d" || icon == "02n") {
+            }else
+            if (icon.equals("02d") || icon.equals("02n")) {
                 return R.drawable.sunnycloudy;
-            }
-            if (icon == "03d" || icon == "03n" || icon == "04d" || icon == "04n" || icon == "50d"
-                    || icon == "50n") {
+            }else
+            if (icon.equals("03d") || icon.equals("03n") || icon.equals("04d") || icon.equals
+                    ("04n") || icon.equals("50d")
+                    || icon.equals("50n")) {
                 return R.drawable.cloudy;
-            }
-            if (icon == "09d" || icon == "09n" || icon == "11d" || icon == "11n") {
+            }else
+            if (icon.equals("09d") || icon.equals("09n") || icon.equals("11d") || icon.equals
+                    ("11n")) {
                 return R.drawable.rainy;
-            }
-            if (icon == "10d" || icon == "10n") {
+            }else
+            if (icon.equals("10d") || icon.equals("10n")) {
                 return R.drawable.sunnyrainy;
-            }
-            if (icon == "13d" || icon == "13n") {
+            }else
+            if (icon.equals("13d") || icon.equals("13n")) {
                 return R.drawable.snowy;
             }
 
