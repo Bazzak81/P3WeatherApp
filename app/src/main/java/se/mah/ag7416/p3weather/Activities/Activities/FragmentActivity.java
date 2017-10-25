@@ -1,10 +1,14 @@
 package se.mah.ag7416.p3weather.Activities.Activities;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +32,7 @@ public class FragmentActivity extends AppCompatActivity implements LocationListe
 
     private WeatherFragment weatherFragment;
     private Controller controller;
+    private double longitude, latitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +42,27 @@ public class FragmentActivity extends AppCompatActivity implements LocationListe
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
 //        new FragmentController("Lund", this);
+        LocationManager lm = (LocationManager) this.getSystemService(LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
+                PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        lm.requestSingleUpdate(LocationManager.GPS_PROVIDER, this, null);
+        Location loc = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        latitude = loc.getLatitude();
+        longitude = loc.getLongitude();
+        Log.d("FragmentActivity", "Lat & Long "+latitude+" & "+longitude);
         controller = new Controller(this);
-        controller.createNewFragment("Lomma");
+        controller.createNewFragment("Home",longitude,latitude);
+//        controller.createNewFragment("Lomma",0,0);
     }
 
     public Controller getController() {
@@ -65,27 +89,10 @@ public class FragmentActivity extends AppCompatActivity implements LocationListe
 
     @Override
     public void onLocationChanged(Location location) {
-        //TODO Fixa
-     
-        double latitude = location.getLatitude();
-        double longitude = location.getLongitude();
-        Geocoder gc = new Geocoder(this, Locale.getDefault());
-        List<Address> addresses = null;
-        try {
-            addresses = gc.getFromLocation(latitude, longitude, 1);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        latitude = location.getLatitude();
+        longitude = location.getLongitude();
 
-        StringBuilder sb = new StringBuilder();
-        if (addresses != null) {
-
-            for (int i = 0; i <= addresses.size(); i++) {
-                Log.d("FragmentActivity", "onLocationChanged: " + addresses.get(i));
-
-            }
-        }
-
+        //TODO Updatera hemfragmentet
     }
 
     @Override

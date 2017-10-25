@@ -60,7 +60,7 @@ public class CreateNewFragmentDialog extends DialogFragment {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.search:
-                    controller.createNewFragment(editCity.getText().toString());
+                    controller.createNewFragment(editCity.getText().toString(),0,0);
                     Log.d("CreateNewFragmentDialog", "onClick: " + editCity.getText().toString());
                     dismiss();
                     break;
