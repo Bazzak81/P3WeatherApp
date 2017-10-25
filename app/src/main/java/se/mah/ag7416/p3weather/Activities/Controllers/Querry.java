@@ -20,12 +20,16 @@ public class Querry extends Thread {
     @Override
     public void run() {
         JSONParser question = new JSONParser(city);
-        fragmentController.updateParser(question);
-        try {
-            Thread.sleep(20000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        if (question != null) {
+            fragmentController.updateParser(question);
         }
+        interrupt();
+
+//        try {
+//            Thread.sleep(20000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
 //        JSONParser test = new JSONParser("träleborg");
 //        Log.d("Querry", "onCreate: city " + test.getCity());

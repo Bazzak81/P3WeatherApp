@@ -22,30 +22,46 @@ public class FragmentController {
     private FragmentActivity fragmentActivity;
 
     public FragmentController(String cityQuerry, FragmentActivity fragmentActivity) {
-        this.fragmentActivity=fragmentActivity;
-        fragment= new WeatherFragment();
+        this.fragmentActivity = fragmentActivity;
+        this.city = cityQuerry;
+        fragment = new WeatherFragment();
         fragment.setController(this);
-        fragmentActivity.addFragment(fragment);
+        fragmentActivity.addFragment(fragment,city);
+        runQuerry();
+        //TODO lägga till controller?
 
-                //TODO lägga till controller?
+    }
+
+    public WeatherFragment getFragment(){
+        return fragment;
+    }
+    public FragmentActivity getActivity(){
+        return fragmentActivity;
+    }
+
+    public void newFragmentDialog(){
+        fragmentActivity.getController().fragmentDialog();
+    }
+
+    public void runQuerry() {
         querry = new Querry();
-        querry.setCity(cityQuerry,this);
+        querry.setCity(city, this);
         querry.start();
     }
 
-    public void updateParser(JSONParser parser){
-        this.parser=parser;
+    public void updateParser(JSONParser parser) {
+        this.parser = parser;
         fragmentActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 setValues();
             }
         });
-        //TODO kör alla set metoder
     }
 
-    private void setValues(){
-        fragment.setText(parser.getCity(),parser.getTemp(),parser.getWindspeed(),parser.getIcon());
-        Log.d("FragmentController ", "setValues: "+parser.getIcon());
+    private void setValues() {
+        fragment.setText(parser.getCity(), parser.getTemp(), parser.getWindspeed(), parser
+                .getIcon());
+        Log.d("FragmentController ", "setValues: " + parser.getIcon());
     }
 }
