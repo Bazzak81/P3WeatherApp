@@ -6,6 +6,7 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -13,6 +14,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+=======
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+>>>>>>> master
 =======
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -32,16 +38,22 @@ public class CreateNewFragmentDialog extends DialogFragment {
 
     private EditText editCity;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> master
     private Button search;
     private Button cancel;
+    private Controller controller;
 
     public CreateNewFragmentDialog() {
 
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.newdialogfragment, container, false);
+    public View onCreateView(Bundle savedInstanceState) {
+       LayoutInflater inflater = getActivity().getLayoutInflater();
+        View view = inflater.inflate(R.layout.newdialogfragment, null);
+//        View view = inflater.inflate(R.layout.newdialogfragment, container, false);
         initializeComponents(view);
         registerListeners();
         return view;
@@ -55,16 +67,11 @@ public class CreateNewFragmentDialog extends DialogFragment {
     }
 
     public void registerListeners() {
-        search.setOnClickListener(new searchListener());
-        cancel.setOnClickListener(new cancelListener());
+      Listener listener = new Listener();
+        search.setOnClickListener(listener);
+        cancel.setOnClickListener(listener);
     }
-
-    private class searchListener implements View.OnClickListener {
-        @Override
-        public void onClick(View v) {
-            Toast.makeText(getActivity(), "SEARCH CLICKED", Toast.LENGTH_SHORT).show();
-        }
-    }
+<<<<<<< HEAD
 =======
     private Controller controller;
 
@@ -91,12 +98,20 @@ public class CreateNewFragmentDialog extends DialogFragment {
                     }
                 });
 >>>>>>> master
+=======
+>>>>>>> master
 
-    private class cancelListener implements View.OnClickListener {
+    private class Listener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            Toast.makeText(getActivity(), "CANCEL CLICKED", Toast.LENGTH_SHORT).show();
-            getDialog().cancel();
+          switch(v.getId()) {
+            case R.id.search:
+                controller.createNewFragment(editCity.getText().toString());
+                 Log.d("CreateNewFragmentDialog", "onClick: "+editCity.getText().toString());
+                 dismiss();
+            break;
+            case R.id.cancel:
+              dismiss();
         }
     }
 

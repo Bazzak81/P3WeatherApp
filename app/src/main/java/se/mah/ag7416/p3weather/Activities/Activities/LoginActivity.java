@@ -122,9 +122,15 @@ public class LoginActivity extends AppCompatActivity implements
     @Override
     public void onClick(View v) {
 <<<<<<< HEAD
+<<<<<<< HEAD
         //signOut(); // Signing out automatic sign-in (for display purposes)
 =======
 //        signOut(); // Signing out automatic sign-in (for display purposes)
+>>>>>>> master
+=======
+
+        //signOut(); // Signing out automatic sign-in (for display purposes)
+
 >>>>>>> master
         signIn();
     }

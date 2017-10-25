@@ -60,11 +60,17 @@ public class WeatherFragment extends Fragment {
         this.fragmentController = fragmentController;
     }
 
+<<<<<<< HEAD
 
 <<<<<<< HEAD
         plusFragment = (ImageView) view.findViewById(R.id.plusFragment);
         minusFragment = (ImageView) view.findViewById(R.id.minusFragment);
 
+=======
+    public void initializeComponents(View view) {
+        plusFragment = (ImageButton) view.findViewById(R.id.plusFragment);
+        minusFragment = (ImageButton) view.findViewById(R.id.minusFragment);
+>>>>>>> master
 =======
     public void initializeComponents(View view) {
         plusFragment = (ImageButton) view.findViewById(R.id.plusFragment);
@@ -88,6 +94,7 @@ public class WeatherFragment extends Fragment {
         weatherImage.setImageResource(icon);
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
     public void setImageResource(View view) {
@@ -129,6 +136,8 @@ public class WeatherFragment extends Fragment {
         minusFragment.setOnClickListener(new removeFragmentListener());
 
 =======
+=======
+>>>>>>> master
 //    public void setTextViews() {
 //        tvCity.setText(weatherModel.place.getCity());
 //        tvTemperature.setText(String.valueOf(weatherModel.temperature.getTemp()));
@@ -172,6 +181,9 @@ public class WeatherFragment extends Fragment {
         FragmentListener listener = new FragmentListener();
         plusFragment.setOnClickListener(listener);
         minusFragment.setOnClickListener(listener);
+<<<<<<< HEAD
+>>>>>>> master
+=======
 >>>>>>> master
     }
 
