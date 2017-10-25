@@ -51,6 +51,7 @@ public class WeatherFragment extends Fragment {
         registerListeners();
 //        setImageResource(view);
 //        setTextViews();
+        registerListeners();
         return view;
     }
 
@@ -58,7 +59,6 @@ public class WeatherFragment extends Fragment {
     public void setController(FragmentController fragmentController) {
         this.fragmentController = fragmentController;
     }
-
 
     public void initializeComponents(View view) {
         plusFragment = (ImageButton) view.findViewById(R.id.plusFragment);
