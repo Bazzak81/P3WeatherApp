@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -30,13 +31,15 @@ public class CreateNewFragmentDialog extends DialogFragment {
     }
 
     @Override
-    public View onCreateView(Bundle savedInstanceState) {
-       LayoutInflater inflater = getActivity().getLayoutInflater();
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.newdialogfragment, null);
-//        View view = inflater.inflate(R.layout.newdialogfragment, container, false);
+        builder.setView(view);
+
         initializeComponents(view);
         registerListeners();
-        return view;
+        return builder.create();
 
     }
 
@@ -55,14 +58,15 @@ public class CreateNewFragmentDialog extends DialogFragment {
     private class Listener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-          switch(v.getId()) {
-            case R.id.search:
-                controller.createNewFragment(editCity.getText().toString());
-                 Log.d("CreateNewFragmentDialog", "onClick: "+editCity.getText().toString());
-                 dismiss();
-            break;
-            case R.id.cancel:
-              dismiss();
+            switch (v.getId()) {
+                case R.id.search:
+                    controller.createNewFragment(editCity.getText().toString());
+                    Log.d("CreateNewFragmentDialog", "onClick: " + editCity.getText().toString());
+                    dismiss();
+                    break;
+                case R.id.cancel:
+                    dismiss();
+            }
         }
     }
 
