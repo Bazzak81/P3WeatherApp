@@ -66,9 +66,12 @@ public class FragmentController {
     }
 
     private void setValues() {
-        fragment.setText(parser.getCity(), parser.getTemp(), parser.getWindspeed(), parser
-                .getIcon());
+
+        fragment.setText(parser.getCity(), parser.getTemp(), parser.getWindspeed(),
+                parser.getIcon(), parser.getDescription());
         Log.d("FragmentController ", "setValues: " + parser.getIcon());
 
     }
+
+
 }
