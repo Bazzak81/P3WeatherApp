@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import se.mah.ag7416.p3weather.Activities.Models.WeatherModel;
 import se.mah.ag7416.p3weather.R;
 
 /**
@@ -19,7 +18,6 @@ import se.mah.ag7416.p3weather.R;
  */
 public class WeatherFragment extends Fragment {
 
-    private WeatherModel weatherModel;
     private String weatherCondition;
     private ImageView weatherImage;
 
@@ -36,20 +34,11 @@ public class WeatherFragment extends Fragment {
 
     private FragmentController fragmentController;
 
-
-    public WeatherFragment() {
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_weather, container, false);
-        weatherModel = new WeatherModel();
         initializeComponents(view);
-        registerListeners();
-//        setImageResource(view);
-//        setTextViews();
         registerListeners();
         return view;
     }
@@ -68,8 +57,12 @@ public class WeatherFragment extends Fragment {
         tvSetTempUnit = (TextView) view.findViewById(R.id.tvSetTempUnit);
         tvSetWindspeed = (TextView) view.findViewById(R.id.tvSetWindspeed);
         tvTempFormat = (TextView) view.findViewById(R.id.tvTempFormat);
+    }
 
-
+    public void registerListeners() {
+        FragmentListener listener = new FragmentListener();
+        plusFragment.setOnClickListener(listener);
+        minusFragment.setOnClickListener(listener);
     }
 
     public void setText(String city, String temp, String wind, int icon, String description) {
@@ -77,57 +70,10 @@ public class WeatherFragment extends Fragment {
         tvTemperature.setText(temp);
         tvSetWindspeed.setText(wind + " m/s");
         weatherImage.setImageResource(icon);
-        tvSetTempUnit.setText(description);
-
     }
 
     public void hideMinusButton(){
         minusFragment.setVisibility(View.INVISIBLE);
-    }
-
-//    public void setTextViews() {
-//        tvCity.setText(weatherModel.place.getCity());
-//        tvTemperature.setText(String.valueOf(weatherModel.temperature.getTemp()));
-//        tvSetTempUnit.setText(CELCIUS);
-//        tvSetWindspeed.setText(String.valueOf(weatherModel.wind.getWindSpeed()));
-//    }
-//
-//    public void setImageResource(View view) {
-//        weatherCondition = weatherModel.currentConditionModel.getCondition();
-//
-//        switch (weatherCondition) {
-//            case "cloudy":
-//                weatherImage.setImageResource(R.drawable.cloudy);
-//                //view.setBackgroundColor();
-//                break;
-//            case "rainy":
-//                weatherImage.setImageResource(R.drawable.rainy);
-//                //view.setBackgroundColor();
-//                break;
-//            case "snowy":
-//                weatherImage.setImageResource(R.drawable.snowy);
-//                //view.setBackgroundColor();
-//                break;
-//            case "sunny":
-//                weatherImage.setImageResource(R.drawable.sunny);
-//                //view.setBackgroundColor();
-//                break;
-//            case "sunnycloudy":
-//                weatherImage.setImageResource(R.drawable.sunnycloudy);
-//                //view.setBackgroundColor();
-//                break;
-//            case "sunnyrainy":
-//                weatherImage.setImageResource(R.drawable.sunnyrainy);
-//                //view.setBackgroundColor();
-//                break;
-//            default:
-//        }
-//    }
-
-    public void registerListeners() {
-        FragmentListener listener = new FragmentListener();
-        plusFragment.setOnClickListener(listener);
-        minusFragment.setOnClickListener(listener);
     }
 
     private class FragmentListener implements View.OnClickListener {
@@ -146,5 +92,4 @@ public class WeatherFragment extends Fragment {
             }
         }
     }
-
 }

@@ -41,10 +41,6 @@ public class FragmentController {
         return fragmentActivity;
     }
 
-    public void hideMinusButton(){
-        fragment.hideMinusButton();
-    }
-
     public void newFragmentDialog() {
         fragmentActivity.getController().fragmentDialog();
     }
