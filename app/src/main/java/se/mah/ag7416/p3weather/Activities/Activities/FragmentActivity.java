@@ -57,9 +57,9 @@ public class FragmentActivity extends AppCompatActivity implements LocationListe
         controller = new Controller(this);
         controller.createNewFragment("Home", longitude, latitude);
 
-        viewPager = (ViewPager) findViewById(R.id.pager);
-        pagerAdapter = new ScreenSlideAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(pagerAdapter);
+//        viewPager = (ViewPager) findViewById(R.id.pager);
+//        pagerAdapter = new ScreenSlideAdapter(getSupportFragmentManager());
+//        viewPager.setAdapter(pagerAdapter);
     }
 
     public Controller getController() {
@@ -77,10 +77,10 @@ public class FragmentActivity extends AppCompatActivity implements LocationListe
         swap.commit();
         numberOfFragments++;
         Log.d("FragmentActivity", "addFragment: "+tag);
-        String[] temp = fragmentTags;
-        fragmentTags = new String[numberOfFragments];
-//        fragmentTags=temp;
-        fragmentTags[numberOfFragments-1]=tag;
+//        String[] temp = fragmentTags;
+//        fragmentTags = new String[numberOfFragments];
+////        fragmentTags=temp;
+//        fragmentTags[numberOfFragments-1]=tag;
     }
 
     public void removeFragment(Fragment fragment) {
@@ -113,22 +113,22 @@ public class FragmentActivity extends AppCompatActivity implements LocationListe
 
     }
 
-    private class ScreenSlideAdapter extends FragmentStatePagerAdapter {
-        private FragmentManager fm;
-
-        public ScreenSlideAdapter(FragmentManager fm) {
-            super(fm);
-            this.fm=fm;
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return fm.findFragmentByTag(fragmentTags[position]);
-        }
-
-        @Override
-        public int getCount() {
-            return numberOfFragments;
-        }
-    }
+//    private class ScreenSlideAdapter extends FragmentStatePagerAdapter {
+//        private FragmentManager fm;
+//
+//        public ScreenSlideAdapter(FragmentManager fm) {
+//            super(fm);
+//            this.fm=fm;
+//        }
+//
+//        @Override
+//        public Fragment getItem(int position) {
+//            return fm.findFragmentByTag(fragmentTags[position]);
+//        }
+//
+//        @Override
+//        public int getCount() {
+//            return numberOfFragments;
+//        }
+//    }
 }

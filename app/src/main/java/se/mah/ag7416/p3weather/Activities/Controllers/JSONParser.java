@@ -73,7 +73,7 @@ public class JSONParser {
             try {
                 JSONArray array = jsonObject.getJSONArray("weather");
                 JSONObject description = array.getJSONObject(0);
-                return description.getString("main");
+                return description.getString("description");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -93,7 +93,7 @@ public class JSONParser {
                 } else if (icon.equals("02d") || icon.equals("02n")) {
                     return R.drawable.sunnycloudy;
                 } else if (icon.equals("03d") || icon.equals("03n") || icon.equals("04d") || icon
-                        .equals("04n") || icon.equals("50d")|| icon.equals("50n")) {
+                        .equals("04n")) {
                     return R.drawable.cloudy;
                 } else if (icon.equals("09d") || icon.equals("09n") || icon.equals("11d") || icon
                         .equals("11n")) {
@@ -102,6 +102,8 @@ public class JSONParser {
                     return R.drawable.sunnyrainy;
                 } else if (icon.equals("13d") || icon.equals("13n")) {
                     return R.drawable.snowy;
+                }else if(icon.equals("50d")|| icon.equals("50n")){
+                    return R.drawable.misty;
                 }
 
             } catch (JSONException e) {
