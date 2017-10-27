@@ -70,6 +70,10 @@ public class WeatherFragment extends Fragment {
         tvSetTempUnit.setText(description);
     }
 
+    public String getCity(){
+        return tvCity.getText().toString();
+    }
+
     public void hideMinusButton(){
         minusFragment.setVisibility(View.INVISIBLE);
     }

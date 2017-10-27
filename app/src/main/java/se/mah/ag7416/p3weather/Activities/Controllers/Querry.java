@@ -30,18 +30,5 @@ public class Querry extends Thread {
             fragmentController.updateParser(question,firstFragment);
         }
         interrupt();
-
-//        try {
-//            Thread.sleep(20000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-
-
-//        JSONParser test = new JSONParser("träleborg");
-//        Log.d("Querry", "onCreate: city " + test.getCity());
-//        Log.d("Querry", "onCreate: temp " + test.getTemp());
-//        if (test.getError()!=null)
-//            Log.d("Querry", "onCreate: null");
     }
 }
