@@ -57,9 +57,9 @@ public class FragmentActivity extends AppCompatActivity implements LocationListe
         controller = new Controller(this);
         controller.createNewFragment("Home", longitude, latitude);
 
-        viewPager = (ViewPager) findViewById(R.id.pager);
-        pagerAdapter = new ScreenSlideAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(pagerAdapter);
+//        viewPager = (ViewPager) findViewById(R.id.pager);
+//        pagerAdapter = new ScreenSlideAdapter(getSupportFragmentManager());
+//        viewPager.setAdapter(pagerAdapter);
     }
 
     public Controller getController() {

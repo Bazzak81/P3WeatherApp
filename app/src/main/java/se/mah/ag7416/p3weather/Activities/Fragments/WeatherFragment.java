@@ -70,6 +70,7 @@ public class WeatherFragment extends Fragment {
         tvTemperature.setText(temp);
         tvSetWindspeed.setText(wind + " m/s");
         weatherImage.setImageResource(icon);
+        tvSetTempUnit.setText(description);
     }
 
     public void hideMinusButton(){
