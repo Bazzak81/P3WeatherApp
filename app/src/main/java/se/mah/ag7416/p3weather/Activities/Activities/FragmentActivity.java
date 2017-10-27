@@ -44,8 +44,7 @@ public class FragmentActivity extends AppCompatActivity implements LocationListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().hide();
 
         LocationManager lm = (LocationManager) this.getSystemService(LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
@@ -58,11 +57,13 @@ public class FragmentActivity extends AppCompatActivity implements LocationListe
         latitude = loc.getLatitude();
         longitude = loc.getLongitude();
 
+
         viewPager = (ViewPager) findViewById(R.id.pager);
         viewPager.setOffscreenPageLimit(100);
         pagerAdapter = new ScreenSlideAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
         controller = new Controller(this);
+      //TODO Jobbar på detta, funkar ej!
         if (savedInstanceState == null) {
             controller.createNewFragment("Home", longitude, latitude);
         }else{
@@ -71,6 +72,7 @@ public class FragmentActivity extends AppCompatActivity implements LocationListe
                 controller.createNewFragment(savedInstanceState.getString("city"+x), 0, 0);
             }
         }
+
     }
 
     public Controller getController() {
