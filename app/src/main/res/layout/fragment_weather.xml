@@ -13,22 +13,24 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp">
 
             <ImageButton
                 android:id="@+id/minusFragment"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_alignParentLeft="true"
-                android:background="@android:color/background_light"
+                android:background="#00000000"
                 android:src="@drawable/removefragment" />
 
             <ImageButton
                 android:id="@+id/plusFragment"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_alignParentRight="true"
-                android:background="@android:color/background_light"
+                android:layout_alignParentEnd="true"
+                android:background="#00000000"
+                android:padding="10dp"
                 android:src="@drawable/addfragment" />
 
         </RelativeLayout>
@@ -57,6 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="0"
+                android:textColor="@android:color/black"
                 android:textAlignment="viewEnd"
                 android:textSize="28dp" />
 
@@ -66,6 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="°C"
+                android:textColor="@android:color/black"
                 android:textSize="28sp"/>
         </LinearLayout>
 
@@ -73,7 +77,7 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="110dp" />
+        android:layout_height="130dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -87,6 +91,7 @@
             android:textSize="40dp"
             android:textStyle="bold"
             android:layout_marginLeft="12dp"
+            android:textColor="@android:color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -100,12 +105,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
+                android:textColor="@android:color/black"
                 android:text="Weather: "
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvSetTempUnit"
+                android:textColor="@android:color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp" />
@@ -123,11 +130,13 @@
                 android:textStyle="bold"
                 android:textSize="16dp"
                 android:layout_marginLeft="12dp"
+                android:textColor="@android:color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/tvSetWindspeed"
+                android:textColor="@android:color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0 m/s"

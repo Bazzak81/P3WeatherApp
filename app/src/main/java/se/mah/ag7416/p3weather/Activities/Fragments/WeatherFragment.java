@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,7 +24,7 @@ public class WeatherFragment extends Fragment {
 
     private ImageButton plusFragment;
     private ImageButton minusFragment;
-
+    private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
     private TextView tvTemperature;
     private TextView tvCity;
     private TextView tvSetTempUnit;
@@ -65,11 +66,13 @@ public class WeatherFragment extends Fragment {
         minusFragment.setOnClickListener(listener);
     }
 
-    public void setText(String city, String temp, String wind, int icon, String description) {
+    public void setText(String city, String temp, String wind, int icon, String description, int background) {
         tvCity.setText(city);
         tvTemperature.setText(temp);
         tvSetWindspeed.setText(wind + " m/s");
         weatherImage.setImageResource(icon);
+        tvSetTempUnit.setText(description);
+        getView().setBackgroundResource(background);
     }
 
     public void hideMinusButton(){
@@ -81,11 +84,11 @@ public class WeatherFragment extends Fragment {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.plusFragment:
-                    Toast.makeText(getActivity(), "Add-fragment button clicked", Toast
-                            .LENGTH_SHORT).show();
+                    plusFragment.startAnimation(buttonClick);
                     fragmentController.newFragmentDialog();
                     break;
                 case R.id.minusFragment:
+                    minusFragment.startAnimation(buttonClick);
                     fragmentController.getActivity().getController().removeFragment
                             (fragmentController.getFragment());
                     break;

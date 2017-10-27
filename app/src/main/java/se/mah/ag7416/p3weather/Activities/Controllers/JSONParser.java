@@ -111,6 +111,35 @@ public class JSONParser {
         return 0;
     }
 
+    public int getBackground() {
+        if (jsonObject != null) {
+            try {
+                JSONArray weather = jsonObject.getJSONArray("weather");
+                JSONObject w = weather.getJSONObject(0);
+                String icon = w.getString("icon");
+                if (icon.equals("01d") || icon.equals("01n")) {
+                    return R.drawable.background_sunny;
+                } else if (icon.equals("02d") || icon.equals("02n")) {
+                    return R.drawable.background_sunnycloudy;
+                } else if (icon.equals("03d") || icon.equals("03n") || icon.equals("04d") || icon
+                        .equals("04n") || icon.equals("50d")|| icon.equals("50n")) {
+                    return R.drawable.background_clouds;
+                } else if (icon.equals("09d") || icon.equals("09n") || icon.equals("11d") || icon
+                        .equals("11n")) {
+                    return R.drawable.background_rainy;
+                } else if (icon.equals("10d") || icon.equals("10n")) {
+                    return R.drawable.background_sunnyrainy;
+                } else if (icon.equals("13d") || icon.equals("13n")) {
+                    return R.drawable.background_snowy;
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return 0;
+    }
+
     public String getError() {
         if (jsonObject != null) {
             try {
