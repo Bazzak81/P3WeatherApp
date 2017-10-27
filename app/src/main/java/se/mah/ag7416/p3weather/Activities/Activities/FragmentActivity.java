@@ -1,6 +1,7 @@
 package se.mah.ag7416.p3weather.Activities.Activities;
 
 import android.Manifest;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -63,16 +64,29 @@ public class FragmentActivity extends AppCompatActivity implements LocationListe
         pagerAdapter = new ScreenSlideAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
         controller = new Controller(this);
-      //TODO Jobbar på detta, funkar ej!
-        if (savedInstanceState == null) {
-            controller.createNewFragment("Home", longitude, latitude);
-        }else{
-            numberOfFragments=savedInstanceState.getInt("numberOfFragments");
-            for(int x=0; x<=numberOfFragments;x++) {
-                controller.createNewFragment(savedInstanceState.getString("city"+x), 0, 0);
-            }
-        }
+        controller.createNewFragment("Home", longitude, latitude);
+//        SharedPreferences preferences = getSharedPreferences("save", MODE_PRIVATE);
+//        if(preferences.contains("numberOfFragments")){
+//            numberOfFragments=preferences.getInt("numberOfFragments",0);
+//            for(int x=0; x<=numberOfFragments;x++) {
+//                String city= preferences.getString("city"+x,"");
+//                controller.createNewFragment(city , 0, 0);
+//        }
 
+
+
+
+      //TODO Jobbar på detta, funkar ej!
+//        Log.d("LOG", "onCreate: "+(savedInstanceState==null));
+//        if (savedInstanceState == null) {
+//            controller.createNewFragment("Home", longitude, latitude);
+//        }else{
+//            controller.createNewFragment("Home", longitude, latitude);
+//            numberOfFragments=savedInstanceState.getInt("numberOfFragments");
+//            for(int x=0; x<=numberOfFragments;x++) {
+//                controller.createNewFragment(savedInstanceState.getString("city"+x), 0, 0);
+//            }
+//        }
     }
 
     public Controller getController() {
@@ -163,9 +177,21 @@ public class FragmentActivity extends AppCompatActivity implements LocationListe
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt("numberOfFragments",numberOfFragments);
-        for(int x=0;x<=fragmentList.size();x++){
-            outState.putString("city"+x,fragmentList.get(x).getCity());
+//        outState.putInt("numberOfFragments",numberOfFragments);
+//        for(int x=0;x<=fragmentList.size();x++){
+//            outState.putString("city"+x,fragmentList.get(x).getCity());
+//        }
+
+
+
+        SharedPreferences preferences = getSharedPreferences("save", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.clear();
+        editor.commit();
+        editor.putInt("numberOfFragments",numberOfFragments);
+        for(int x=0;x<=fragmentList.size()-1;x++){
+            editor.putString("city"+x,fragmentList.get(x).getCity());
         }
+        editor.apply();
     }
 }

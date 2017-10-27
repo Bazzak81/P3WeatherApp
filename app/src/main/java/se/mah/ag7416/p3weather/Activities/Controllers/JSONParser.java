@@ -17,8 +17,8 @@ public class JSONParser {
 
     private JSONObject jsonObject;
 
-    public JSONParser(String city,double longitude,double latitude) {
-        String data = new Connection().getWeather(city,longitude,latitude);
+    public JSONParser(String data) {
+//        String data = new Connection().getWeather(city,longitude,latitude);
         Log.d("JSONParser", "JSONParser: " + data);
         if (data != null) {
             try {
