@@ -10,24 +10,35 @@ import se.mah.ag7416.p3weather.Activities.Fragments.FragmentController;
 public class Querry extends Thread {
 
     private String city;
-    private double Long,Lat;
+    private double Long, Lat;
     private FragmentController fragmentController;
-    private boolean firstFragment=false;
+    private boolean firstFragment = false;
+    private String data="";
 
-    public void setCity(String city,double Long,double Lat, FragmentController fragmentController) {
+    public void setCity(String city, double Long, double Lat, FragmentController
+            fragmentController) {
         this.city = city;
         this.fragmentController = fragmentController;
-        this.Long=Long;
-        this.Lat=Lat;
-        if(city.equals("Home")) firstFragment=true;
+        this.Long = Long;
+        this.Lat = Lat;
+        if (city.equals("Home")) firstFragment = true;
     }
 
 
     @Override
     public void run() {
-        JSONParser question = new JSONParser(city,Long,Lat);
-        if (question != null) {
-            fragmentController.updateParser(question,firstFragment);
+        boolean running = true;
+
+        while (running) {
+            data = new Connection().getWeather(city, Long, Lat);
+            if (!data.equals("")) running = false;
+        }
+        if (!data.equals("")) {
+            JSONParser question = new JSONParser(data);
+
+            if (question != null) {
+                fragmentController.updateParser(question, firstFragment);
+            }
         }
         interrupt();
     }
