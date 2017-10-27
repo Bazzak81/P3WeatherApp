@@ -89,6 +89,7 @@ public class FragmentActivity extends AppCompatActivity implements LocationListe
         fragmentList.add(fragment);
         pagerAdapter.notifyDataSetChanged();
         viewPager.setCurrentItem(numberOfFragments);
+
     }
 
     public void removeFragment(WeatherFragment fragment) {
