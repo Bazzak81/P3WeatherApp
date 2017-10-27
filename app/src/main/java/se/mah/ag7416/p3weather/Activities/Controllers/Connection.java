@@ -31,11 +31,10 @@ public class Connection {
 
             try {
                 if (!city.equals("Home")) {
-                    connection = (HttpURLConnection) (new URL(httpPath + city + ",se" + apiKey +
-                            language + unit)).openConnection();
+                    connection = (HttpURLConnection) (new URL(httpPath + city + ",se" + apiKey + unit)).openConnection();
                 } else {
                     connection = (HttpURLConnection) (new URL(cordHttpPath + "lat=" + latitude +
-                            "&lon=" + longitude + apiKey + language + unit)).openConnection();
+                            "&lon=" + longitude + apiKey + unit)).openConnection();
                 }
                 connection.setRequestMethod("GET");
                 connection.setDoInput(true);

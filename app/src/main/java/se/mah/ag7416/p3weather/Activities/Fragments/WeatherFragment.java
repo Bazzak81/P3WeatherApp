@@ -19,12 +19,12 @@ import se.mah.ag7416.p3weather.R;
  */
 public class WeatherFragment extends Fragment {
 
-    private String weatherCondition;
     private ImageView weatherImage;
-
     private ImageButton plusFragment;
     private ImageButton minusFragment;
+
     private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
+
     private TextView tvTemperature;
     private TextView tvCity;
     private TextView tvSetTempUnit;
@@ -73,6 +73,10 @@ public class WeatherFragment extends Fragment {
         weatherImage.setImageResource(icon);
         tvSetTempUnit.setText(description);
         getView().setBackgroundResource(background);
+    }
+
+    public String getCity(){
+        return tvCity.getText().toString();
     }
 
     public void hideMinusButton(){

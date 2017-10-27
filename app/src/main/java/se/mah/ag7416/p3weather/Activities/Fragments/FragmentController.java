@@ -27,8 +27,9 @@ public class FragmentController {
         this.Lat = Lat;
         fragment = new WeatherFragment();
         fragment.setController(this);
-        fragmentActivity.addFragment(fragment, city);
         runQuerry();
+        fragmentActivity.addFragment(fragment, city);
+
         //TODO lägga till controller?
 
     }
