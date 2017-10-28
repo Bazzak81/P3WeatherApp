@@ -22,6 +22,7 @@ import com.google.android.gms.common.api.Status;
 
 import se.mah.ag7416.p3weather.R;
 
+// wubalubadubdub
 
 public class LoginActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener,
