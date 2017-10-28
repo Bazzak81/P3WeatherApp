@@ -51,9 +51,10 @@ public class FragmentController {
         querry = new Querry();
         querry.setCity(city, Long, Lat, this);
         querry.start();
+
     }
 
-    public void updateParser(JSONParser parser, final boolean firstFragment) {
+    public synchronized void updateParser(JSONParser parser, final boolean firstFragment) {
         this.parser = parser;
 
         fragmentActivity.runOnUiThread(new Runnable() {

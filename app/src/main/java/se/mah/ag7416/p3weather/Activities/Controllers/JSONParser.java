@@ -16,10 +16,17 @@ import se.mah.ag7416.p3weather.R;
 public class JSONParser {
 
     private JSONObject jsonObject;
+    private String data;
 
     public JSONParser(String data) {
+        this.data=data;
+        createObject();
 //        String data = new Connection().getWeather(city,longitude,latitude);
         Log.d("JSONParser", "JSONParser: " + data);
+
+    }
+
+    public synchronized void createObject(){
         if (data != null) {
             try {
                 jsonObject = new JSONObject(data);
@@ -29,7 +36,7 @@ public class JSONParser {
         }
     }
 
-    public String getTemp() {
+    public synchronized String getTemp() {
         if (jsonObject != null) {
             try {
                 JSONObject main = jsonObject.getJSONObject("main");
@@ -44,7 +51,7 @@ public class JSONParser {
         return null;
     }
 
-    public String getWindspeed() {
+    public synchronized String getWindspeed() {
         if (jsonObject != null) {
             try {
                 JSONObject wind = jsonObject.getJSONObject("wind");
@@ -56,7 +63,7 @@ public class JSONParser {
         return null;
     }
 
-    public String getCity() {
+    public synchronized String getCity() {
         if (jsonObject != null) {
             try {
                 return jsonObject.getString("name");
@@ -68,7 +75,7 @@ public class JSONParser {
 
     }
 
-    public String getDescription() {
+    public synchronized String getDescription() {
         if (jsonObject != null) {
             try {
                 JSONArray array = jsonObject.getJSONArray("weather");
@@ -82,7 +89,7 @@ public class JSONParser {
 
     }
 
-    public int getIcon() {
+    public synchronized int getIcon() {
         if (jsonObject != null) {
             try {
                 JSONArray weather = jsonObject.getJSONArray("weather");
@@ -113,7 +120,7 @@ public class JSONParser {
         return 0;
     }
 
-    public int getBackground() {
+    public synchronized int getBackground() {
         if (jsonObject != null) {
             try {
                 JSONArray weather = jsonObject.getJSONArray("weather");
@@ -142,7 +149,7 @@ public class JSONParser {
         return 0;
     }
 
-    public String getError() {
+    public synchronized String getError() {
         if (jsonObject != null) {
             try {
                 return jsonObject.getString("error");

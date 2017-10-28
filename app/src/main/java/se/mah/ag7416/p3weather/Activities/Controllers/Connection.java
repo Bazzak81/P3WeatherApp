@@ -24,7 +24,7 @@ public class Connection {
 
     }
 
-    public String getWeather(String city, double longitude, double latitude) {
+    public synchronized String  getWeather(String city, double longitude, double latitude) {
         HttpURLConnection connection;
         InputStream inputStream;
         if (!city.equals("")) {

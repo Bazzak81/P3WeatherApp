@@ -65,14 +65,15 @@ public class FragmentActivity extends AppCompatActivity implements LocationListe
         viewPager.setAdapter(pagerAdapter);
         controller = new Controller(this);
         controller.createNewFragment("Home", longitude, latitude);
-//        SharedPreferences preferences = getSharedPreferences("save", MODE_PRIVATE);
-//        if(preferences.contains("numberOfFragments")){
-//            numberOfFragments=preferences.getInt("numberOfFragments",0);
-//            for(int x=0; x<=numberOfFragments;x++) {
-//                String city= preferences.getString("city"+x,"");
-//                controller.createNewFragment(city , 0, 0);
+        SharedPreferences preferences = getSharedPreferences("save", MODE_PRIVATE);
+//        if(preferences.contains("numberOfFragments")) {
+//            numberOfFragments = preferences.getInt("numberOfFragments", 0);
+//            for (int x = 0; x <= numberOfFragments; x++) {
+//                String city = preferences.getString("city" + x+1, "");
+//                Log.d("FragmentActivity", "onCreate: "+city);
+//                controller.createNewFragment(city, 0, 0);
+//            }
 //        }
-
 
 
 
