@@ -46,7 +46,6 @@ public class FragmentActivity extends AppCompatActivity implements LocationListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment);
         getSupportActionBar().hide();
-
         LocationManager lm = (LocationManager) this.getSystemService(LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
                 PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
@@ -57,36 +56,24 @@ public class FragmentActivity extends AppCompatActivity implements LocationListe
         Location loc = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         latitude = loc.getLatitude();
         longitude = loc.getLongitude();
-
-
         viewPager = (ViewPager) findViewById(R.id.pager);
         viewPager.setOffscreenPageLimit(100);
         pagerAdapter = new ScreenSlideAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
         controller = new Controller(this);
         controller.createNewFragment("Home", longitude, latitude);
-//        SharedPreferences preferences = getSharedPreferences("save", MODE_PRIVATE);
-//        if(preferences.contains("numberOfFragments")){
-//            numberOfFragments=preferences.getInt("numberOfFragments",0);
-//            for(int x=0; x<=numberOfFragments;x++) {
-//                String city= preferences.getString("city"+x,"");
-//                controller.createNewFragment(city , 0, 0);
-//        }
 
-
-
-
-      //TODO Jobbar på detta, funkar ej!
-//        Log.d("LOG", "onCreate: "+(savedInstanceState==null));
-//        if (savedInstanceState == null) {
-//            controller.createNewFragment("Home", longitude, latitude);
-//        }else{
-//            controller.createNewFragment("Home", longitude, latitude);
-//            numberOfFragments=savedInstanceState.getInt("numberOfFragments");
-//            for(int x=0; x<=numberOfFragments;x++) {
-//                controller.createNewFragment(savedInstanceState.getString("city"+x), 0, 0);
-//            }
-//        }
+        //TODO Få detta att funka
+        SharedPreferences preferences = getSharedPreferences("save", MODE_PRIVATE);
+        if(preferences.contains("numberOfFragments")) {
+            int number = preferences.getInt("numberOfFragments", 0);
+            Log.d("FragmentActivity", "onCreate: nbrFrag "+number);
+            for (int x = 1; x <= number-1; x++) {
+                String city = preferences.getString("city" + x, "");
+                Log.d("FragmentActivity", "onCreate: city: "+city);
+                controller.createNewFragment(city, 0, 0);
+            }
+        }
     }
 
     public Controller getController() {
@@ -101,6 +88,7 @@ public class FragmentActivity extends AppCompatActivity implements LocationListe
     public void addFragment(WeatherFragment fragment, String tag) {
         numberOfFragments++;
         fragmentList.add(fragment);
+        Log.d("FragmentActivity", "addFragment: "+tag);
         pagerAdapter.notifyDataSetChanged();
         viewPager.setCurrentItem(numberOfFragments);
 
@@ -110,14 +98,9 @@ public class FragmentActivity extends AppCompatActivity implements LocationListe
         numberOfFragments--;
         int index = fragmentList.indexOf(fragment);
         fragmentList.remove(index);
+        Log.d("FragmentActivity", "removeFragment: "+fragment.getCity());
         pagerAdapter.notifyDataSetChanged();
         pagerAdapter.destroyItem(viewPager,index,fragment);
-
-//        ArrayList<WeatherFragment> temp = new ArrayList<>();
-//        for(WeatherFragment frag:fragmentList){
-//            temp.add(frag);
-//        }
-//        fragmentList=temp;
 
     }
 
@@ -177,21 +160,17 @@ public class FragmentActivity extends AppCompatActivity implements LocationListe
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-//        outState.putInt("numberOfFragments",numberOfFragments);
-//        for(int x=0;x<=fragmentList.size();x++){
-//            outState.putString("city"+x,fragmentList.get(x).getCity());
-//        }
-
-
 
         SharedPreferences preferences = getSharedPreferences("save", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.clear();
         editor.commit();
-        editor.putInt("numberOfFragments",numberOfFragments);
-        for(int x=0;x<=fragmentList.size()-1;x++){
-            editor.putString("city"+x,fragmentList.get(x).getCity());
+        if (numberOfFragments > 0) {
+            editor.putInt("numberOfFragments", numberOfFragments);
+            for (int x = 0; x <= fragmentList.size() - 1; x++) {
+                editor.putString("city" + x, fragmentList.get(x).getCity());
+            }
+            editor.apply();
         }
-        editor.apply();
     }
 }
