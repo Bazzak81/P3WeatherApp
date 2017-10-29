@@ -1,5 +1,7 @@
 package se.mah.ag7416.p3weather.Activities.Controllers;
 
+import android.util.Log;
+
 import se.mah.ag7416.p3weather.Activities.Fragments.FragmentController;
 
 
@@ -13,7 +15,6 @@ public class Querry extends Thread {
     private double Long, Lat;
     private FragmentController fragmentController;
     private boolean firstFragment = false;
-    private String data="";
 
     public void setCity(String city, double Long, double Lat, FragmentController
             fragmentController) {
@@ -28,16 +29,19 @@ public class Querry extends Thread {
     @Override
     public void run() {
         boolean running = true;
+        int counter =0;
 
         while (running) {
+            counter++;
+            String data = "";
+            Log.d("Querry", "run: data= "+data);
+            Log.d("Querry", "run: antal "+counter);
             data = new Connection().getWeather(city, Long, Lat);
-            if (!data.equals("")) running = false;
-        }
-        if (!data.equals("")) {
-            JSONParser question = new JSONParser(data);
-
-            if (question != null) {
+            Log.d("Querry", "run: data after="+data);
+            if (!data.equals("")) {
+                JSONParser question = new JSONParser(data);
                 fragmentController.updateParser(question, firstFragment);
+                running = false;
             }
         }
         interrupt();
