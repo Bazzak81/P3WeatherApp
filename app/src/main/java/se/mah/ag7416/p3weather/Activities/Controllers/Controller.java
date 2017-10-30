@@ -1,6 +1,8 @@
 package se.mah.ag7416.p3weather.Activities.Controllers;
 
 
+import android.widget.Toast;
+
 import java.util.ArrayList;
 
 import se.mah.ag7416.p3weather.Activities.Activities.FragmentActivity;
@@ -30,8 +32,8 @@ public class Controller {
         dialog.setController(this);
     }
 
-    public void createNewFragment(String city){
-        FragmentController fragmentController = new FragmentController(city,activity);
+    public void createNewFragment(String city, double Long, double Lat){
+        FragmentController fragmentController = new FragmentController(city,activity,Long,Lat);
         fragmentControllerArrayList.add(fragmentController);
     }
 

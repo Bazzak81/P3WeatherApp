@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.Menu;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -38,7 +39,8 @@ public class FragmentActivity extends AppCompatActivity implements LocationListe
 
 //        new FragmentController("Lund", this);
         controller = new Controller(this);
-        controller.createNewFragment("Lomma");
+        
+        controller.createNewFragment("Lomma",0,0);
     }
 
     public Controller getController() {
@@ -69,6 +71,7 @@ public class FragmentActivity extends AppCompatActivity implements LocationListe
      
         double latitude = location.getLatitude();
         double longitude = location.getLongitude();
+
         Geocoder gc = new Geocoder(this, Locale.getDefault());
         List<Address> addresses = null;
         try {

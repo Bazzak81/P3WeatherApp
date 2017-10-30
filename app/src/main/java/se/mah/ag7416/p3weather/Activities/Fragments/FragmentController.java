@@ -12,42 +12,43 @@ import se.mah.ag7416.p3weather.Activities.Controllers.Querry;
 
 public class FragmentController {
 
-    private String temp;
-    private String windSpeed;
-    private String city;
-    private int icon;
+    private double Long, Lat;
+    private String city = "Home";
     private Querry querry;
     private JSONParser parser;
     private WeatherFragment fragment;
     private FragmentActivity fragmentActivity;
 
-    public FragmentController(String cityQuerry, FragmentActivity fragmentActivity) {
-
+    public FragmentController(String cityQuerry, FragmentActivity fragmentActivity, double Long,
+                              double Lat) {
         this.fragmentActivity = fragmentActivity;
         this.city = cityQuerry;
+        this.Long = Long;
+        this.Lat = Lat;
         fragment = new WeatherFragment();
         fragment.setController(this);
-        fragmentActivity.addFragment(fragment,city);
+        fragmentActivity.addFragment(fragment, city);
         runQuerry();
         //TODO lägga till controller?
 
     }
 
-    public WeatherFragment getFragment(){
+    public WeatherFragment getFragment() {
         return fragment;
     }
-    public FragmentActivity getActivity(){
+
+    public FragmentActivity getActivity() {
         return fragmentActivity;
     }
 
-    public void newFragmentDialog(){
+    public void newFragmentDialog() {
         fragmentActivity.getController().fragmentDialog();
     }
 
     public void runQuerry() {
 
         querry = new Querry();
-        querry.setCity(city, this);
+        querry.setCity(city, Long, Lat, this);
         querry.start();
     }
 

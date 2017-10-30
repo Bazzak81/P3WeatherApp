@@ -10,12 +10,14 @@ import se.mah.ag7416.p3weather.Activities.Fragments.FragmentController;
 public class Querry extends Thread {
 
     private String city;
+    private double Long,Lat;
     private FragmentController fragmentController;
 
-    public void setCity(String city, FragmentController fragmentController) {
+    public void setCity(String city,double Long,double Lat, FragmentController fragmentController) {
         this.city = city;
         this.fragmentController = fragmentController;
     }
+
 
     @Override
     public void run() {
