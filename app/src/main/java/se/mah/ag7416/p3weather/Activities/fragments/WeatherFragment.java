@@ -1,4 +1,4 @@
-package se.mah.ag7416.p3weather.Activities.Fragments;
+package se.mah.ag7416.p3weather.Activities.fragments;
 
 
 import android.os.Bundle;
@@ -10,8 +10,8 @@ import android.view.animation.AlphaAnimation;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import se.mah.ag7416.p3weather.Activities.controllers.FragmentController;
 import se.mah.ag7416.p3weather.R;
 
 /**
@@ -22,9 +22,7 @@ public class WeatherFragment extends Fragment {
     private ImageView weatherImage;
     private ImageButton plusFragment;
     private ImageButton minusFragment;
-
     private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
-
     private TextView tvTemperature;
     private TextView tvCity;
     private TextView tvSetTempUnit;
