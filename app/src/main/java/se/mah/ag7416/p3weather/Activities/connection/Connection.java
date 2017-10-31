@@ -1,4 +1,4 @@
-package se.mah.ag7416.p3weather.Activities.Controllers;
+package se.mah.ag7416.p3weather.Activities.connection;
 
 import java.io.BufferedReader;
 import java.io.IOException;

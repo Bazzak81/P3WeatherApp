@@ -1,13 +1,11 @@
-package se.mah.ag7416.p3weather.Activities.Activities;
+package se.mah.ag7416.p3weather.Activities.activities;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -16,7 +14,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
@@ -69,6 +66,7 @@ public class LoginActivity extends AppCompatActivity implements
         Log.d(TAG, "handleSignInResult:" + result.isSuccess());
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
+            Toast.makeText(this, "You are logged in", Toast.LENGTH_SHORT).show();
             GoogleSignInAccount acct = result.getSignInAccount();
             updateUI(true);
             startFragmentActivity();
@@ -115,7 +113,7 @@ public class LoginActivity extends AppCompatActivity implements
 
     @Override
     public void onClick(View v) {
-        signOut(); // Signing out automatic sign-in (for display purposes)
+        signOut(); //TODO Signing out automatic sign-in (for display purposes)
         signIn();
     }
 }

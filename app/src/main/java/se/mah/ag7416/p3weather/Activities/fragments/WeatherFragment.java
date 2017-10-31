@@ -1,4 +1,4 @@
-package se.mah.ag7416.p3weather.Activities.Fragments;
+package se.mah.ag7416.p3weather.Activities.fragments;
 
 
 import android.os.Bundle;
@@ -10,8 +10,8 @@ import android.view.animation.AlphaAnimation;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import se.mah.ag7416.p3weather.Activities.controllers.FragmentController;
 import se.mah.ag7416.p3weather.R;
 
 /**

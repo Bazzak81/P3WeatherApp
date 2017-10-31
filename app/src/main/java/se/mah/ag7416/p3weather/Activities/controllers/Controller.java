@@ -1,12 +1,11 @@
-package se.mah.ag7416.p3weather.Activities.Controllers;
+package se.mah.ag7416.p3weather.Activities.controllers;
 
 
 import java.util.ArrayList;
 
-import se.mah.ag7416.p3weather.Activities.Activities.FragmentActivity;
-import se.mah.ag7416.p3weather.Activities.Fragments.CreateNewFragmentDialog;
-import se.mah.ag7416.p3weather.Activities.Fragments.FragmentController;
-import se.mah.ag7416.p3weather.Activities.Fragments.WeatherFragment;
+import se.mah.ag7416.p3weather.Activities.activities.FragmentActivity;
+import se.mah.ag7416.p3weather.Activities.fragments.CreateNewFragmentDialog;
+import se.mah.ag7416.p3weather.Activities.fragments.WeatherFragment;
 
 /**
  * Created by OlleOlsson on 2017-10-18.

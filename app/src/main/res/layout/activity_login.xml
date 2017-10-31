@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_login"
     android:orientation="vertical"
-    tools:context="se.mah.ag7416.p3weather.Activities.Activities.LoginActivity">
+    tools:context="se.mah.ag7416.p3weather.Activities.activities.LoginActivity">
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/sign_in_button"

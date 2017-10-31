@@ -1,4 +1,4 @@
-package se.mah.ag7416.p3weather.Activities.Controllers;
+package se.mah.ag7416.p3weather.Activities.connection;
 
 import android.util.Log;
 
@@ -124,7 +124,7 @@ public class JSONParser {
                 } else if (icon.equals("02d") || icon.equals("02n")) {
                     return R.drawable.background_sunnycloudy;
                 } else if (icon.equals("03d") || icon.equals("03n") || icon.equals("04d") || icon
-                        .equals("04n") || icon.equals("50d")|| icon.equals("50n")) {
+                        .equals("04n")) {
                     return R.drawable.background_clouds;
                 } else if (icon.equals("09d") || icon.equals("09n") || icon.equals("11d") || icon
                         .equals("11n")) {
@@ -133,6 +133,8 @@ public class JSONParser {
                     return R.drawable.background_sunnyrainy;
                 } else if (icon.equals("13d") || icon.equals("13n")) {
                     return R.drawable.background_snowy;
+                } else if(icon.equals("50d")|| icon.equals("50n")){
+                    return R.drawable.background_mist;
                 }
 
             } catch (JSONException e) {

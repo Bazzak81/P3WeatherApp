@@ -1,8 +1,8 @@
-package se.mah.ag7416.p3weather.Activities.Controllers;
+package se.mah.ag7416.p3weather.Activities.connection;
 
 import android.util.Log;
 
-import se.mah.ag7416.p3weather.Activities.Fragments.FragmentController;
+import se.mah.ag7416.p3weather.Activities.controllers.FragmentController;
 
 
 /**

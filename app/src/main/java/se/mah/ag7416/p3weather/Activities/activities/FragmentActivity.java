@@ -1,4 +1,4 @@
-package se.mah.ag7416.p3weather.Activities.Activities;
+package se.mah.ag7416.p3weather.Activities.activities;
 
 import android.Manifest;
 import android.content.SharedPreferences;
@@ -11,21 +11,16 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
-import android.view.View;
-
-import com.google.android.gms.awareness.state.Weather;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import se.mah.ag7416.p3weather.Activities.Controllers.Controller;
-import se.mah.ag7416.p3weather.Activities.Fragments.WeatherFragment;
+import se.mah.ag7416.p3weather.Activities.controllers.Controller;
+import se.mah.ag7416.p3weather.Activities.fragments.WeatherFragment;
 import se.mah.ag7416.p3weather.R;
 
 /**
@@ -99,17 +94,14 @@ public class FragmentActivity extends AppCompatActivity implements LocationListe
         int index = fragmentList.indexOf(fragment);
         fragmentList.remove(index);
         Log.d("FragmentActivity", "removeFragment: "+fragment.getCity());
-        pagerAdapter.notifyDataSetChanged();
         pagerAdapter.destroyItem(viewPager,index,fragment);
-
+        pagerAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onLocationChanged(Location location) {
         latitude = location.getLatitude();
         longitude = location.getLongitude();
-
-        //TODO Updatera hemfragmentet
     }
 
     @Override
@@ -153,7 +145,6 @@ public class FragmentActivity extends AppCompatActivity implements LocationListe
             } else {
                 return POSITION_NONE;
             }
-
         }
     }
 

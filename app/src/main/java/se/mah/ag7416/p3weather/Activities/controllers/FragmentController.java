@@ -1,10 +1,11 @@
-package se.mah.ag7416.p3weather.Activities.Fragments;
+package se.mah.ag7416.p3weather.Activities.controllers;
 
 import android.util.Log;
 
-import se.mah.ag7416.p3weather.Activities.Activities.FragmentActivity;
-import se.mah.ag7416.p3weather.Activities.Controllers.JSONParser;
-import se.mah.ag7416.p3weather.Activities.Controllers.Querry;
+import se.mah.ag7416.p3weather.Activities.activities.FragmentActivity;
+import se.mah.ag7416.p3weather.Activities.connection.JSONParser;
+import se.mah.ag7416.p3weather.Activities.connection.Querry;
+import se.mah.ag7416.p3weather.Activities.fragments.WeatherFragment;
 
 /**
  * Created by Jimmy Åkesson on 2017-10-24.
@@ -67,7 +68,6 @@ public class FragmentController {
     }
 
     private void setValues() {
-
         fragment.setText(parser.getCity(), parser.getTemp(), parser.getWindspeed(),
                 parser.getIcon(), parser.getDescription(), parser.getBackground());
         Log.d("FragmentController ", "setValues: " + parser.getIcon());
