@@ -22,9 +22,7 @@ public class WeatherFragment extends Fragment {
     private ImageView weatherImage;
     private ImageButton plusFragment;
     private ImageButton minusFragment;
-
     private AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F);
-
     private TextView tvTemperature;
     private TextView tvCity;
     private TextView tvSetTempUnit;
