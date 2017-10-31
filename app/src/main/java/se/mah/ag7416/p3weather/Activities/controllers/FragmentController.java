@@ -70,7 +70,6 @@ public class FragmentController {
     private void setValues() {
         fragment.setText(parser.getCity(), parser.getTemp(), parser.getWindspeed(),
                 parser.getIcon(), parser.getDescription(), parser.getBackground());
-        Log.d("FragmentController ", "setValues: " + parser.getIcon());
 
     }
 

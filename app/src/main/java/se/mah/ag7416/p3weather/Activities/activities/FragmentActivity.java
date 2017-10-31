@@ -62,10 +62,8 @@ public class FragmentActivity extends AppCompatActivity implements LocationListe
         SharedPreferences preferences = getSharedPreferences("save", MODE_PRIVATE);
         if(preferences.contains("numberOfFragments")) {
             int number = preferences.getInt("numberOfFragments", 0);
-            Log.d("FragmentActivity", "onCreate: nbrFrag "+number);
             for (int x = 1; x <= number-1; x++) {
                 String city = preferences.getString("city" + x, "");
-                Log.d("FragmentActivity", "onCreate: city: "+city);
                 controller.createNewFragment(city, 0, 0);
             }
         }
@@ -83,7 +81,6 @@ public class FragmentActivity extends AppCompatActivity implements LocationListe
     public void addFragment(WeatherFragment fragment, String tag) {
         numberOfFragments++;
         fragmentList.add(fragment);
-        Log.d("FragmentActivity", "addFragment: "+tag);
         pagerAdapter.notifyDataSetChanged();
         viewPager.setCurrentItem(numberOfFragments);
 
@@ -93,7 +90,6 @@ public class FragmentActivity extends AppCompatActivity implements LocationListe
         numberOfFragments--;
         int index = fragmentList.indexOf(fragment);
         fragmentList.remove(index);
-        Log.d("FragmentActivity", "removeFragment: "+fragment.getCity());
         pagerAdapter.destroyItem(viewPager,index,fragment);
         pagerAdapter.notifyDataSetChanged();
     }

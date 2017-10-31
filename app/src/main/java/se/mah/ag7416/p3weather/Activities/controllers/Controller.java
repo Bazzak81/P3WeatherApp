@@ -37,6 +37,5 @@ public class Controller {
 
     public void removeFragment(WeatherFragment fragment){
         activity.removeFragment(fragment);
-
     }
 }
